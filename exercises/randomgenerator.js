@@ -1,14 +1,19 @@
 
 
 class RandomGenerator{
-	constructor(){ 
+	constructor(min, max){ 
 		//takes in the minimum and maximum values
+		this.min = min;
+		this.max = max;
 		//if they are not defined, it sets the minimum to 1, and the max to 10
 		//makes storage for the random number
+	
+
 	}
 	generate(){
 		//make a random value between the minimum and maximum values
 		//and store the number into the storage from the constructor
+
 	}
 	getRange(){
 		//return an object with min and max, min being the minimum value for the generator, max being the maximum value

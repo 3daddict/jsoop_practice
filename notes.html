@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OOP Notes</title>
+</head>
+<body>
+
+    <script>
+
+        //OBJECT LITERALS
+            let userOne = {
+                email: 'ryu@ninjas.com',
+                name: 'Ryu',
+                login() {
+                    console.log(this.email, 'has logged in')
+                },
+                logout() {
+                    console.log(this.email, 'has logged out')
+                }
+            };
+
+            //Dot notation
+            console.log('Dot notation', userOne.email);
+            //OUTPUT = Dot notation ryu@ninjas.com
+
+            //Square bracket notation
+            console.log('Square bracket notation', userOne['email']);
+            //note 'email' is in quotes
+            //OUTPUT = Square bracket notation ryu@ninjas.com
+
+            //So whats the difference?
+            var prop = 'name'
+            //userOne[prop] = 'Ryu'
+            prop = 'email'
+            //userOne[prop] = 'ryu@ninjas.com'
+            //userOne.prop = undefined
+
+            //userOne[prop] <- Here we are passing in a variable so it's dynamic
+            //userOne.prop <- Here we are passing in a property so it's static
+
+
+            //Adding to the object (not best practice but possible)
+            userOne.age = 25;
+            console.log(userOne);
+            //OUTPUT = {email: "ryu@ninjas.com", name: "Ryu", login: ƒ, logout: ƒ, age: 25}
+            userOne.logInfo = function(){console.log('New function')};
+
+        //CLASSES
+        //https://youtu.be/HboT8g_QSGc
+            class User {
+                //the contsrtuctor is a function that creates a new empty object
+                constructor(email, name){
+                    this.email = email;
+                    this.name = name;
+                    this.score = 0;
+                }
+                //METHODS
+                login(){
+                    console.log(this.email, 'just logged in');
+                    return this;
+                }
+
+                logout(){
+                    console.log(this.email, 'just logged out');
+                    return this;
+                }
+
+                updateScore() {
+                    this.score++
+                    console.log(this.email, 'score is now', this.score);
+                    return this;
+                }
+
+            };
+
+            //Class Inheritance
+            //by doing this it will inherit all of the data from the user class
+            class Admin extends User {
+                //do not need constructor, if no constructor it will inherit the extended one.
+                deleteUser(user) {
+                    users = users.filter(u => {
+                        return u.email != user.email;
+                    });
+                }
+            }
+
+            //calls the constructor method and creates a new object called userOne
+            const userClassOne = new User('ryu@ninjas.com', 'Ryu');
+            const userClassTwo = new User('ken@ninjas.com', 'Ken');
+            const admin = new Admin('admin@ninjas.com', 'Admin');
+            let users = [userClassOne, userClassTwo];
+
+            admin.deleteUser(userClassTwo);
+
+            console.log('Users:', users);
+
+            console.log(userClassOne);
+            console.log(userClassTwo);
+
+            userClassOne.login();
+            userClassTwo.logout();
+
+            //method chaining
+            // this works because the above methods are returning this (the entire object)
+            userClassOne.login().updateScore().updateScore().logout();
+
+    </script>
+    
+</body>
+</html>
