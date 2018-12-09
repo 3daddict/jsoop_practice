@@ -36,5 +36,5 @@ class Account{
 
 const test1 = new Account();
 test1.add(100);
-test1.remove(150);
+test1.remove(50);
 console.log('GETAMOUNT', test1.getAmount());
